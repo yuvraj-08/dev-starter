@@ -1,8 +1,13 @@
+// components/theme-provider.tsx
 "use client";
 
-import React, { ReactNode } from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ReactNode } from "react";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // You can add theme context/provider logic here later
-  return <>{children}</>;
+  return (
+    <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+    </NextThemesProvider>
+  );
 }

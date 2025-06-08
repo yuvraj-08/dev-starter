@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import './globals.css'
-import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from '@/components/shared/theme-provider'
+import { Toaster } from "sonner";
 
 export const metadata : Metadata = {
   title: 'DevStarter',
@@ -15,10 +15,10 @@ export default function RootLayout({
 }>) {
   return (
      <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen font-sans antialiased bg-background text-foreground">
+      <body className="min-h-screen font-sans antialiased bg-background text-foreground" cz-shortcut-listen="true">
         <ThemeProvider>
           {children}
-          <Toaster />
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>
