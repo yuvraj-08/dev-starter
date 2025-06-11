@@ -1,12 +1,23 @@
 // components/layouts/dashboard-layout.tsx
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { MobileSidebar } from "@/components/layouts/sidebar/mobile-sidebar";
 import { Sidebar } from "@/components/layouts/sidebar/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
     <div className="min-h-screen">
       {/* Mobile header with toggle */}
@@ -16,13 +27,19 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       </div>
 
       {/* Desktop layout with sidebar */}
-      <div className="grid grid-cols-1 md:grid-cols-[240px_1fr]">
-        <Sidebar />
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr]">
+        <Sidebar onCollapseChange={(state) => setIsCollapsed(state)} />
 
         {/* Main content area with top navbar */}
-        <div className="flex flex-col">
+        <div
+          className={
+            isCollapsed
+              ? "md:ml-0 transition-all duration-300"
+              : "md:ml-0 transition-all duration-300"
+          }
+        >
           {/* Top navbar */}
-          <div className="hidden md:flex items-center justify-end px-4 py-2 border-b sticky top-0 bg-background z-10">
+          <div className="hidden md:flex items-center justify-end px-4 py-3 border-b sticky top-0 bg-background z-10">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="h-8 w-8 cursor-pointer">
@@ -37,9 +54,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 <DropdownMenuItem asChild>
                   <Link href="/dashboard/settings">Account Settings</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => console.log("Logging out...")}>
-                  Logout
-                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => console.log("Logging out...")}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
