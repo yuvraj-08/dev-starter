@@ -2,18 +2,8 @@
 import { ReactNode, useState } from "react";
 import { MobileSidebar } from "@/components/layouts/sidebar/mobile-sidebar";
 import { Sidebar } from "@/components/layouts/sidebar/sidebar";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Link from "next/link";
+import AvatarDropdownMenu from "@/common/AvatarDropdownMenu";
+
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -23,7 +13,8 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       {/* Mobile header with toggle */}
       <div className="flex items-center justify-between p-4 border-b md:hidden">
         <MobileSidebar />
-        <h1 className="text-lg font-semibold">Dashboard</h1>
+        {/* <h1 className="text-lg font-semibold">Dashboard</h1> */}
+        <AvatarDropdownMenu/>
       </div>
 
       {/* Desktop layout with sidebar */}
@@ -40,23 +31,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         >
           {/* Top navbar */}
           <div className="hidden md:flex items-center justify-end px-4 py-3 border-b sticky top-0 bg-background z-10">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar className="h-8 w-8 cursor-pointer">
-                  <AvatarImage src="/placeholder-user.jpg" alt="User" />
-                  <AvatarFallback>YS</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard/profile">View Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard/settings">Account Settings</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => console.log("Logging out...")}>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <AvatarDropdownMenu/>
           </div>
 
           {/* Page content */}
