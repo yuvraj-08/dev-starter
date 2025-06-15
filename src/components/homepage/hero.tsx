@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <section className="w-full py-20 px-4 md:px-8 lg:px-16 bg-background">
+    <section className="w-full min-h-[90vh] flex items-center px-4 md:px-8 lg:px-16 bg-background">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left: Text Content */}
         <motion.div
@@ -38,11 +38,11 @@ export function Hero() {
           className="w-full"
         >
           <Image
-            src="/images/dev_starter_demo.png"
+            src="/images/hero-section-animation.webp"
             width={800}
             height={600}
             alt="DevStarter preview"
-            className="w-full h-auto rounded-xl shadow-lg"
+            className="w-full h-auto max-h-[500px] md:max-h-[600px] rounded-xl shadow-xl object-contain"
             priority
           />
         </motion.div>

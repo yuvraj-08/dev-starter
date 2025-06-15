@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import './globals.css'
-import { ThemeProvider } from '@/components/shared/theme-provider'
 import { Toaster } from "sonner";
+import { Providers } from "@/providers";
+import { FloatingThemeToggle } from "@/components/shared/floating-theme-toggle";
 
 export const metadata : Metadata = {
   title: 'DevStarter',
@@ -16,10 +17,11 @@ export default function RootLayout({
   return (
      <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen font-sans antialiased bg-background text-foreground" cz-shortcut-listen="true">
-        <ThemeProvider>
+        <Providers>
           {children}
+          <FloatingThemeToggle />
           <Toaster richColors />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
